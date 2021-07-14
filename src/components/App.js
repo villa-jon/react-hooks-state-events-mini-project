@@ -7,19 +7,19 @@ import { CATEGORIES, TASKS } from "../data";
 // console.log("Here's the data you're working with");
 // console.log({ CATEGORIES, TASKS });
 function App() {
-  const [Tasks, setTasks] = useState(TASKS)
-  const [Categories, setCategories] = useState("All")
+  const [tasks, setTasks] = useState(TASKS)
+  const [category, setCategory] = useState("All")
 
   function handleTasks(newTasks) {
-    setTasks([...Tasks, newTasks])
+    setTasks([...tasks, newTasks])
   }
 
   function handleDeleteTask(deletedTaskText) {
-    setTasks(Tasks.filter((Task) => Task.text !== deletedTaskText));
+    setTasks(tasks.filter((task) => task.text !== deletedTaskText));
   }
 
-  const visibleTasks = Tasks.filter(
-    (Task) => Categories === "All" || Task.Categories === Categories
+  const visibleTasks = tasks.filter(
+    (task) => category === "All" || task.category === category
   );
 
   return (
@@ -27,8 +27,8 @@ function App() {
       <h2>My tasks</h2>
       <CategoryFilter 
       categories = {CATEGORIES} 
-      selectedCategory={Categories}
-      onSelectCategory={setCategories}
+      selectedCategory={category}
+      onSelectCategory={setCategory}
       />
       <NewTaskForm 
       categories={CATEGORIES.filter((cat) => cat !== "All")}
